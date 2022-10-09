@@ -1,0 +1,7 @@
+Flask==2.2.2
+numpy==1.22.1
+pandas==1.4.2
+requests==2.26.0
+pickle4
+gunicorn
+scikit-learn==1.0.2

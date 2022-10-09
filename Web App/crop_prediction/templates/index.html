@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Crop Prediction</title>
+  </head>
+  <body class="bg-gradient-to-r from-green-100 via-white to-green-100 ">
+    <nav class="flex justify-between px-4 py-8 mx-auto bg-green-200 w-full shadow">
+      <div class="">
+        <h3 class="text-blue-500">
+          <svg
+            class="w-8 h-8"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <g>
+              <path fill="none" d="M0 0H24V24H0z"></path>
+              <path
+                d="M21 3v2c0 9.627-5.373 14-12 14H7.098c.212-3.012 1.15-4.835 3.598-7.001 1.204-1.065 1.102-1.68.509-1.327-4.084 2.43-6.112 5.714-6.202 10.958L5 22H3c0-1.363.116-2.6.346-3.732C3.116 16.974 3 15.218 3 13 3 7.477 7.477 3 13 3c2 0 4 1 8 0z"
+              ></path>
+            </g>
+          </svg>
+        </h3>
+      </div>
+      <div class="hidden space-x-8 lg:flex">
+        <a href="">Home</a>
+        <a href="">About Us</a>
+        <a href="">Blogs</a>
+        <a href="">Our Team</a>
+        <a href="">Contact Us</a>
+      </div>
+    </nav>
+    <div class="p-20">
+      <h1 class="mb-8 uppercase text-2xl font-bold">Crop yield prediction</h1>
+
+      <form action="{{ url_for('predict') }}" method="post">
+        <div>
+            <div class="flex gap-12">
+                <div class="flex flex-col">
+                    <label class="font-semibold">Select city</label>
+                    <select name="city" id="city" class="w-56 px-4 py-1.5 border border-slate-500 rounded-sm">
+                    <option value="1">Colombo</option>
+                    <option value="2">Gampaha</option>
+                    <option value="3">Kalutara</option>
+                    <option value="4">Kandy</option>
+                    <option value="5">Matale</option>
+                    <option value="6">Nuwaraeliya</option>
+                    <option value="7">Galle</option>
+                    <option value="8">Matara</option>
+                    <option value="9">Hambantota</option>
+                    <option value="10">Jaffna</option>
+                    <option value="11">Kilinochchi</option>
+                    <option value="12">Mannar</option>
+                    <option value="13">Vavuniya</option>
+                    <option value="14">Mullativu</option>
+                    <option value="15">Batticaloa</option>
+                    <option value="16">Ampara</option>
+                    <option value="17">Trincomalee</option>
+                    <option value="18">Kurunegala</option>
+                    <option value="19">Puttalam</option>
+                    <option value="20">Anuradhapura</option>
+                    <option value="21">Polonnaruwa</option>
+                    <option value="22">Badulla</option>
+                    <option value="23">Moneragala</option>
+                    <option value="24">Ratnapura</option>
+                    <option value="25">Kegalle</option>
+                    <option value="26">Mahaweli</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col">
+                    <label class="font-semibold">Select session</label>
+                    <select name="sem" id="sem" class="w-56 px-4 py-1.5 border border-slate-500 rounded-sm">
+                    <option value="1">Yala</option>
+                    <option value="2">Maha</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="flex gap-12 mt-4">
+                <div>
+                    <label class="block mt-2.5 font-semibold">Max temperature</label>  
+                    <input class="px-4 py-1.5 w-full border border-slate-500 rounded-sm appearance-none" type="number" name="tempmax" placeholder="tempmax" />
+                </div>
+                <div>
+                    <label class="block mt-2.5 font-semibold">Min temperature</label>
+                    <input class="px-4 py-1.5 w-full border border-slate-500 rounded-sm appearance-none" type="number" name="tempmin" placeholder="tempmin" />
+                </div>
+                <div>
+                    <label class="block mt-2.5 font-semibold">Avg temp</label>
+                    <input class="px-4 py-1.5 w-full border border-slate-500 rounded-sm appearance-none" type="number" name="temp" placeholder="temp" />
+                </div>
+                <div>
+                    <label class="block mt-2.5 font-semibold">Feels like max temperature</label>
+                    <input class="px-4 py-1.5 w-full border border-slate-500 rounded-sm appearance-none" type="number" name="feelslikemax" placeholder="feelslikemax" />
+                </div>
+                <div>
+                    <label class="block mt-2.5 font-semibold">Feels like min temperature</label>
+                    <input class="px-4 py-1.5 w-full border border-slate-500 rounded-sm appearance-none" type="number" name="feelslikemin" placeholder="feelslikemin" />
+                </div>
+                <div>
+                    <label class="block mt-2.5 font-semibold">Feels like temperature</label>
+                    <input class="px-4 py-1.5 w-full border border-slate-500 rounded-sm appearance-none" type="number" name="feelslike" placeholder="feelslike" />
+                </div>
+            </div>
+
+            <div class="flex gap-12 mt-4">  
+                <div>  
+                    <label class="block mt-2.5 font-semibold">Dew</label>
+                    <input class="px-4 py-1.5 w-full border border-slate-500 rounded-sm appearance-none" type="number" name="dew" placeholder="dew" />
+                </div>
+                <div>
+                    <label class="block mt-2.5 font-semibold">Humidity</label>
+                    <input class="px-4 py-1.5 w-full border border-slate-500 rounded-sm appearance-none" type="number" name="humidity" placeholder="humidity" />
+                </div>
+                <div>
+                    <label class="block mt-2.5 font-semibold">Moonphase</label>
+                    <input class="px-4 py-1.5 w-full border border-slate-500 rounded-sm appearance-none" type="number" name="moonphase" placeholder="moonphase" />
+                </div>
+                <div>
+                    <label class="block mt-2.5 font-semibold">Cloudcover</label>
+                    <input class="px-4 py-1.5 w-full  border border-slate-500 rounded-sm appearance-none" type="number" name="cloudcover" placeholder="cloudcover" />
+                </div>
+                <div>
+                    <label class="block mt-2.5 font-semibold">Visibility</label>
+                    <input class="px-4 py-1.5 w-full border border-slate-500 rounded-sm appearance-none" type="number" name="visibility" placeholder="visibility" />
+                </div>
+            </div>
+
+            <div class="flex gap-12 mt-4">
+                <div>
+                    <label class="block mt-2.5 font-semibold">Windspeed</label>
+                    <input class="px-4 py-1.5 w-full border border-slate-500 rounded-sm appearance-none" type="number" name="windspeed" placeholder="windspeed" />
+                </div>
+                <div>
+                    <label class="block mt-2.5 font-semibold">Winddir</label>
+                    <input class="px-4 py-1.5 w-full border border-slate-500 rounded-sm appearance-none" type="number" name="winddir" placeholder="winddir" />
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <label class="block mt-2.5 font-semibold">Hec</label>
+                <input class="px-4 py-1.5 w-56 border border-slate-500 rounded-sm appearance-none" type="number" name="hec" placeholder="hec" />
+            </div>
+        </div>
+        <button type="submit" class="bg-green-400 px-4 py-2 rounded-md mt-8">Predict</button> 
+      </form>
+
+      <h1 class="mt-8 text-xl">{{ prediction_text }}</h1>
+    </div>
+  </body>
+</html>
